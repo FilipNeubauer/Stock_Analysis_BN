@@ -15,3 +15,4 @@ def changeRSI(df, over_sold, over_bought):
 
     return df
     
+# TO DO make it into one column with values: Bull, Bearish, False/-1
