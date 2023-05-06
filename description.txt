@@ -1,0 +1,36 @@
+Bayesian Network:
+    nodes: change_discretize30, SMA_7_discretize, rsi_discretize
+    every node equally discretized
+    estimator: MaximumLikelihoodEstimator
+    (mostly predicting up)
+    AAPL: 
+        Performance:  0.6046114432109309
+        Accuracy Positives:  0.605424321959755
+        Accuracy Negatives:  0.5714285714285714
+    IBM:
+        Performance:  0.5622866894197952
+        Accuracy Positives:  0.5681581685744017
+        Accuracy Negatives:  0.5355450236966824
+    MSFT:
+        Performance:  0.5981228668941979
+        Accuracy Positives:  0.6079136690647482
+        Accuracy Negatives:  0.4166666666666667
+
+    
+Logistic Reggression:
+    inputs: change_shifted30, SMA_change7_shifted (continuous)
+    solver: liblinear (default)
+    (only predicting up)
+    AAPL:
+        Performance:  0.601195559350982
+        Accuracy Positives:  0.601195559350982
+        Accuracy Negatives:  no negatives predicted
+    IBM:
+        Performance:  0.5494880546075085
+        Accuracy Positives:  0.5494880546075085
+        Accuracy Negatives:  no negatives predicted
+    MSFT:
+        Performance:  0.606655290102389
+        Accuracy Positives:  0.606655290102389
+        Accuracy Negatives:  no negatives predicted
+    
