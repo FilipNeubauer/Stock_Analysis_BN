@@ -60,6 +60,8 @@ def preprocessData(ticker):
     # ---using only 200 data---
     # df = df.iloc[len(df)-200:]
 
+    print(df["change_discretize7"].value_counts())
+
 
     split_num = math.floor(len(df)*0.8)
     train = df.iloc[:split_num, :] # older

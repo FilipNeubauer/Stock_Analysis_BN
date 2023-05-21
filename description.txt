@@ -33,4 +33,43 @@ Logistic Reggression:
         Performance:  0.606655290102389
         Accuracy Positives:  0.606655290102389
         Accuracy Negatives:  no negatives predicted
+
+    class_weight = 'balanced'
+    inputs: change_shifted30, SMA_change7_shifted (continuous)
+    solver: liblinear (default)
+    (only predicting up)
+    AAPL:
+        Performance:  0.5644748078565329
+        Accuracy Positives:  0.6465256797583081
+        Accuracy Negatives:  0.4577603143418468
+    IBM:
+        Performance:  0.5315699658703071
+        Accuracy Positives:  0.5837742504409171
+        Accuracy Negatives:  0.4826446280991736
+    MSFT:
+        Performance:  0.4863481228668942
+        Accuracy Positives:  0.6230248306997742
+        Accuracy Negatives:  0.40329218106995884
+
+----------------------------------------------------------------
+AAPL:
+    up      3349
+    down    2505
+IBM:
+    up      3132
+    down    2728
+MSFT:
+    up      3199
+    down    2661
     
+
+
+TO DO:
+    LSTM
+    word classification
+    Bayesian logistic regression???
+
+
+                    Actual up  Actual Down
+Predicted up          676          436
+Predicted down         35           25
