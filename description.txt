@@ -51,6 +51,53 @@ Logistic Reggression:
         Accuracy Positives:  0.6230248306997742
         Accuracy Negatives:  0.40329218106995884
 
+Naive Bayes text classifier:
+    DJIA data
+    SMOTE + Top 1-5, no lemm:
+        Performance:  0.5050251256281407
+        Accuracy Positives:  0.5126903553299492
+        Accuracy Negatives:  0.4975124378109453
+    SMOTE + Top 1-25, no lemm:
+        Performance:  0.5150753768844221
+        Accuracy Positives:  0.5177865612648221
+        Accuracy Negatives:  0.5103448275862069
+    *SMOTE + Top 1-25, test size 0.2, shuffle=False:
+        Performance:  0.5276381909547738
+        Accuracy Positives:  0.5301724137931034
+        Accuracy Negatives:  0.5240963855421686
+    SMOTE + Top 1-25, test size 0.2, shuffle=True:
+        Performance:  0.5175879396984925
+        Accuracy Positives:  0.5914893617021276
+        Accuracy Negatives:  0.4110429447852761
+    SMOTE, random_state=42:
+        Performance:  0.49246231155778897
+        Accuracy Positives:  0.5598086124401914
+        Accuracy Negatives:  0.41798941798941797
+
+
+    Random oversampling + Top 1-25, test size 0.2:
+        Performance:  0.4949748743718593
+        Accuracy Positives:  0.5018315018315018
+        Accuracy Negatives:  0.48
+    *Random oversampling, shuffle=True:
+        Performance:  0.5226130653266332
+        Accuracy Positives:  0.5116279069767442
+        Accuracy Negatives:  0.5355191256830601
+    Random oversampling, random_state=42:
+        Performance:  0.507537688442211
+        Accuracy Positives:  0.5676855895196506
+        Accuracy Negatives:  0.4260355029585799
+
+
+Naive Bayes text calssifier after consultation:
+    lemm, removing punctuation, stopwords
+    only CountVectorizer:
+        Performance:  0.4899497487437186
+        Accuracy Positives:  0.5504201680672269
+        Accuracy Negatives:  0.4
+
+
+
 ----------------------------------------------------------------
 AAPL:
     up      3349
