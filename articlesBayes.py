@@ -13,6 +13,7 @@ from nltk.stem import WordNetLemmatizer
 from imblearn.over_sampling import RandomOverSampler
 from imblearn.under_sampling import RandomUnderSampler
 np.set_printoptions(threshold=np.inf)
+import csv
 
 
 
@@ -42,10 +43,14 @@ df.fillna("", inplace=True)
 # print(df[df.isna().any(axis=1)])
 
 
-df["combined"] = df[['Top1', "Top2", "Top3", 'Top4', 'Top5', 'Top6', 'Top7',
-      'Top8', 'Top9', 'Top10', 'Top11', 'Top12', 'Top13', 'Top14', 'Top15',
-      'Top16', 'Top17', 'Top18', 'Top19', 'Top20', 'Top21', 'Top22', 'Top23',
-       'Top24', 'Top25']].apply(lambda row: " ".join(row), axis=1) # 
+df["combined"] = df[['Top1', ]].apply(lambda row: " ".join(row), axis=1) # 
+# "Top2", "Top3", 'Top4', 'Top5', 'Top6', 'Top7',
+#       'Top8', 'Top9', 'Top10', 'Top11', 'Top12', 'Top13', 'Top14', 'Top15',
+#       'Top16', 'Top17', 'Top18', 'Top19', 'Top20', 'Top21', 'Top22', 'Top23',
+#        'Top24', 'Top25'
+
+# df = df.iloc[:100]
+
 
 
 
@@ -83,10 +88,17 @@ def text_cleaning(row):
 
     lem_words = [lemmatizer.lemmatize(word) for word in remove_stop_words] # same meanings together
 
+    
+    # one_words = pd.read_csv("one_words.csv")
+    # without_one_words = [word for word in lem_words if word not in one_words[0]]
 
+
+    # print(without_one_words)
     return lem_words
 
+########errrorrrrrrr
 
+# print(text_cleaning(df["combined"].iloc[0]))
 
 
 
@@ -94,22 +106,59 @@ def text_cleaning(row):
 # 
 cv = CountVectorizer(analyzer=text_cleaning)
 transform = cv.fit_transform(df["combined"])     # asigning numbers to words
-print(cv.vocabulary_)
+# print(cv.vocabulary_)
 
 
 # ---count of most common words---
 word_counts = np.array(transform.sum(axis=0)).flatten()
 
 # Get indices of top 10 words with most occurrences
-top_10_indices = np.argsort(word_counts)[-100:][::-1]
+# top_10_indices = np.argsort(word_counts)[-100:][::-1]
+top_10_indices = np.argsort(word_counts)[::-1]
+# print(top_10_indices)
+
 
 # Retrieve the top 10 words and their counts
 top_10_words = [list(cv.vocabulary_.keys())[list(cv.vocabulary_.values()).index(index)] for index in top_10_indices]
 top_10_counts = [word_counts[index] for index in top_10_indices]
 
 # Print the top 10 words and their counts
+
+n = 0
+one_words = []
 for word, count in zip(top_10_words, top_10_counts):
-    print("Word:", word, "- Count:", count)
+    if (count == 1):
+        n += 1
+        # print("Word:", word, "- Count:", count)
+        one_words.append(word)
+
+    
+# print(n)
+
+
+# def create_csv_from_array(array, filename):
+#     with open(filename, 'w', newline='') as csvfile:
+#         writer = csv.writer(csvfile)
+#         writer.writerow(array)
+
+# # Example usage
+# csv_filename = 'one_words.csv'
+
+# create_csv_from_array(one_words, csv_filename)
+
+# print(pd.read_csv("one_words.csv"))
+
+def create_csv_from_array(array, filename):
+    df = pd.DataFrame(array)
+    df.to_csv(filename, index=False)
+
+# Example usage
+# csv_filename = 'one_words.csv'
+
+# create_csv_from_array(one_words, csv_filename)
+
+# print(pd.read_csv("one_words.csv"))
+
 
 
 
@@ -151,7 +200,9 @@ with open("output.txt", "w") as f:
     pd.set_option('display.width', None)
     pd.set_option('display.max_colwidth', -1)
     
-    # print(prob_table.transpose(), file=f)
+    # print(prob_table.transpose().sort_values(0,  ascending=False), file=f) # sort by biggest impact on 0
+    # print(prob_table.transpose().sort_values(1,  ascending=False), file=f) # sort by biggest impact on 0
+
     # print(transform.toarray(), file=f)
 
     
@@ -163,6 +214,7 @@ with open("output.txt", "w") as f:
 conf = pd.DataFrame({"Predicted": predict, "Actual":y_test})
 
 my_confusion_matrix(conf, "Predicted", "Actual", up=1, down=0)
+
 
 
 
