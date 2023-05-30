@@ -96,6 +96,48 @@ Naive Bayes text calssifier after consultation:
         Accuracy Positives:  0.5504201680672269
         Accuracy Negatives:  0.4
 
+    alpha=0.1:
+                            Actual up  Actual Down
+        Predicted up          120           90
+        Predicted down        107           81
+        Performance:  0.5050251256281407
+        Accuracy Positives:  0.5714285714285714
+        Accuracy Negatives:  0.4308510638297872
+
+    without one_words + alpha=0.1:
+                            Actual up  Actual Down
+        Predicted up          122           93
+        Predicted down        105           78
+        Performance:  0.5025125628140703
+        Accuracy Positives:  0.5674418604651162
+        Accuracy Negatives:  0.4262295081967213
+
+    alpha=0.1 + without my_own_words:
+        Predicted up          121           90
+        Predicted down        106           81
+        Performance:  0.507537688442211
+        Accuracy Positives:  0.5734597156398105
+        Accuracy Negatives:  0.43315508021390375
+
+    alpha=0.1 + shuffle=False:
+                        Actual up  Actual Down
+        Predicted up          126          110
+        Predicted down         76           86
+        Performance:  0.5326633165829145
+        Accuracy Positives:  0.5338983050847458
+        Accuracy Negatives:  0.5308641975308642
+    
+    external preprocessing, shuffle=False, alpha=0.1:
+                        Actual up  Actual Down
+        Predicted up          122          104
+        Predicted down         80           92
+        Performance:  0.5376884422110553
+        Accuracy Positives:  0.5398230088495575
+        Accuracy Negatives:  0.5348837209302325
+
+    
+
+
 
 
 ----------------------------------------------------------------
@@ -117,6 +159,4 @@ TO DO:
     Bayesian logistic regression???
 
 
-                    Actual up  Actual Down
-Predicted up          676          436
-Predicted down         35           25
+(1989, 47598)

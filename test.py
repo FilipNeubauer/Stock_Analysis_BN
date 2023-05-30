@@ -32,21 +32,14 @@ def text_cleaning(row):
     remove_stop_words = [word for word in remove_punc.split() if word.lower() not in stopwords.words("english")]  # removing stopwords
 
     lem_words = [lemmatizer.lemmatize(word) for word in remove_stop_words] # same meanings together
+
     
-    #---removing words that occur only once--- 
     # one_words = pd.read_csv("one_words.csv")
-    # without_one_words = [word for word in lem_words if word not in list(one_words.iloc[:, 0])]
+    # without_one_words = [word for word in lem_words if word not in one_words[0]]
 
 
-    #---manually removing words with possibly low significance (only my perspectif)---
-    # remove_us = [word for word in lem_words if word not in ["us", "Us"]]
-
-    # lower_words = [word.lower() for word in remove_us]
-
-    # words = [word for word in lem_words if word not in ["say", "says", "say", "year", "said", "amp", "take","get", "us", "Us"]]
-    # print(len(lem_words))
-    lem_words = " ".join(lem_words)
-    return lem_words 
+    # print(without_one_words)
+    return lem_words
 
 
 #---oversamplerers---
@@ -55,52 +48,72 @@ oversampler = RandomOverSampler(random_state=42)
 undersampler = RandomUnderSampler(random_state=42)
 
 
-df = pd.read_csv("Combined_News_DJIA.csv")
+df = pd.DataFrame(data={"col" : ["Hello, this is a testing sentence.", "Hello, this is a second sentence.","Hello, this is a testing."], "Label":[1, 0, 1]})
+print(df)
 
 lemmatizer = WordNetLemmatizer()
 
 
 # ---replacing nan values with empty string---
 df.fillna("", inplace=True)
+# print(df[df.isna().any(axis=1)])
 
 
-df["combined"] = df[['Top1', "Top2", "Top3", 'Top4', 'Top5', 'Top6', 'Top7',
-      'Top8', 'Top9', 'Top10', 'Top11', 'Top12', 'Top13', 'Top14', 'Top15',
-      'Top16', 'Top17', 'Top18', 'Top19', 'Top20', 'Top21', 'Top22', 'Top23',
-       'Top24', 'Top25']].apply(lambda row: " ".join(row), axis=1) # 
 
 
-#---testing with only 100 records---
 # df = df.iloc[:100]
 
 
+
+
+
+# with open("output.txt", "w") as f:
+#     pd.set_option('display.max_rows', None)
+#     pd.set_option('display.max_columns', None)
+#     pd.set_option('display.width', None)
+#     pd.set_option('display.max_colwidth', -1)
     
-#---cheking imbalances---
+#     # All dataframes hereafter reflect these changes.
+#     print(df["combined"], file=f)
+    
+#     # Resets the options
+#     pd.reset_option('all')
+
+    
+# ---cheking imbalances---
 # print(df["Label"].value_counts())
 
 
+# ---using only column Top1---
+# df = df.iloc[:, [0, 1, 2]]
+# print(df)
 
-#---testing text_cleaning function---
+
+
+
+
+
+
+########errrorrrrrrr
+
 # print(text_cleaning(df["combined"].iloc[0]))
 
 
 
 
-df["combined"] = df["combined"].apply(text_cleaning)
-
-
-cv = CountVectorizer() # , analyzer=text_cleaning, ngram_range=(2,2)
-transform = cv.fit_transform(df["combined"])     # asigning numbers to words
+# 
+cv = CountVectorizer(analyzer=text_cleaning)
+transform = cv.fit_transform(df["col"])     # asigning numbers to words
 # print(cv.vocabulary_)
 # print(transform)
+
 # print(transform.sum(axis=0).flatten())
-print(transform.shape)
-
-
 # ---count of most common words---
 word_counts = np.array(transform.sum(axis=0)).flatten()
-# Get indices of top 10 words with most occurrences
+# print(word_counts)
 
+
+# Get indices of top 10 words with most occurrences
 # top_10_indices = np.argsort(word_counts)[::-1]
 top_10_indices = np.argsort(word_counts)[-100:][::-1]
 # print(top_10_indices)
@@ -112,16 +125,30 @@ top_10_counts = [word_counts[index] for index in top_10_indices]
 
 # Print the top 10 words and their counts
 
-#---getting words that occur only once---
 n = 0
 one_words = []
 for word, count in zip(top_10_words, top_10_counts):
-    print("Word:", word, "- Count:", count)
+    # print("Word:", word, "- Count:", count)
 
     if (count == 1):
         n += 1
         one_words.append(word)
 
+    
+# print(n)
+
+
+# def create_csv_from_array(array, filename):
+#     with open(filename, 'w', newline='') as csvfile:
+#         writer = csv.writer(csvfile)
+#         writer.writerow(array)
+
+# # Example usage
+# csv_filename = 'one_words.csv'
+
+# create_csv_from_array(one_words, csv_filename)
+
+# print(pd.read_csv("one_words.csv"))
 
 def create_csv_from_array(array, filename):
     df = pd.DataFrame(array)
@@ -143,17 +170,20 @@ def create_csv_from_array(array, filename):
 
 
 
-X_train, X_test, y_train, y_test = train_test_split(transform, df["Label"], test_size=0.2, shuffle=False) # splitting data into training and testing datasets , random_state=42
-# print(X_train)
+
 
 # X_train_smote, y_train_smote = smote.fit_resample(X_train, y_train)
 # X_train_random, y_train_random = oversampler.fit_resample(X_train, y_train)
 
 
-model = MultinomialNB(alpha=0.1).fit(X_train, y_train) 
-# print(model.predict_proba(X_train))
+
+# print(transform[:2])
+# print()
+print(cv.vocabulary_)
+
+model = MultinomialNB(alpha=0.1).fit(transform[:2], df.loc[:1, ["Label"]])
+print(model.predict(transform[2]))
 # print(model)
-predict = model.predict(X_test)
 
 
 
@@ -175,14 +205,19 @@ with open("output.txt", "w") as f:
     pd.set_option('display.max_columns', None)
     pd.set_option('display.width', None)
     pd.set_option('display.max_colwidth', -1)
+    print(np.exp(model.feature_log_prob_),file=f)
+    # print(model.feature_names_in_, file=f)
 
     prob_table.iloc[[0, 1]] = prob_table.iloc[[1, 0]].values
-
-  
     
-    print(prob_table.transpose().sort_values(1,  ascending=False), file=f) # sort by biggest impact on 0
+    print(prob_table, file=f) # sort by biggest impact on 0
+
+
+
+    print(prob_table.transpose().sort_values(0,  ascending=False), file=f) # sort by biggest impact on 0
     # print(prob_table.transpose().sort_values(1,  ascending=False), file=f) # sort by biggest impact on 0
 
+    # print(model.predict_proba(transform[2]),file=f)
     # print(transform.toarray(), file=f)
 
     
@@ -191,9 +226,7 @@ with open("output.txt", "w") as f:
 
 
 
-conf = pd.DataFrame({"Predicted": predict, "Actual":y_test})
 
-my_confusion_matrix(conf, "Predicted", "Actual", up=1, down=0)
 
 
 

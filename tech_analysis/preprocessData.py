@@ -1,26 +1,17 @@
-import pandas as pd
-import numpy as np
-import pymc3 as pm
-import matplotlib.pyplot as plt
 import json
-from priceChange import priceChange
+import pandas as pd
+from tech_analysis.priceChange import priceChange
 import pandas_ta as ta
 import math
 
 
-# doesnt work
 
 
-if __name__ == '__main__':
-    # Load the stock data
-    ticker = "AAPL"
 
 
+def preprocessData(ticker):
     with open("./data/data"+ ticker + ".json", "r") as f:
-        data = json.load(f)
-
-
-
+            data = json.load(f)
 
     # ---getting the data from json and creating dataframe + converting strings to float---
     my_list = []
@@ -55,72 +46,26 @@ if __name__ == '__main__':
     # df["change_discretize30"] = pd.cut(x=df["change_shifted30"], bins=[-1, 0, 1], labels=["down", "up"]) # maybe issue if the cahnge is higher/lower than 100 %
     df["change_discretize30"] = pd.qcut(x=df["change_shifted30"], q=3, labels=["down","middle", "up"]) 
 
-    df["direction7"] = [1 if i > 0 else 0 for i in df["change7"]]
-
-
-    df.dropna(inplace=True)
-
 
     # ---creating RSI column + discretizing---
     df["rsi"] = ta.rsi(close=df["adjusted close"], length=14)
     df["rsi_shifted"] = df["rsi"].shift(7) # shifting it the down 7 bcs to predict the next 7 days change
     df["rsi_discretize"] = pd.qcut(x=df["rsi_shifted"], q=3, labels=["low", "middle", "high"]) 
 
+
+    # ---droping all NAN values---
     df.dropna(inplace=True)
+
+
+    # ---using only 200 data---
+    # df = df.iloc[len(df)-200:]
+
+    print(df["change_discretize7"].value_counts())
 
 
     split_num = math.floor(len(df)*0.8)
     train = df.iloc[:split_num, :] # older
     test = df.iloc[split_num:, :] # newer
 
-    # Define the predictor and response variables
-    X = train[['rsi_shifted', 'change_shifted30', 'SMA_change7_shifted']].values
-    y = train['direction7'].values
+    return train, test
 
-
-
-    print(X)
-    print(y)
-
-
-
-    # Standardize the predictor variables
-    X = (X - np.mean(X, axis=0)) / np.std(X, axis=0)
-
-    print(X)
-
-    
-
-
-    # Define the model
-    with pm.Model() as logistic_model:
-        pm.glm.GLM(x=X, labels=['rsi_shifted', 'change_shifted30', 'SMA_change7_shifted'],
-        y=y, family=pm.glm.families.Binomial())
-        # Priors on the parameters
-        # alpha = pm.Normal('alpha', mu=0, sd=10)
-        # beta = pm.Normal('beta', mu=0, sd=10, shape=X.shape[1])
-
-        # Likelihood function
-        # likelihood = pm.Bernoulli('y', p=pm.math.sigmoid(alpha + pm.math.dot(beta, X.T)), observed=y)
-
-        # Run the model
-        trace = pm.sample(2000, chains=4, tune=1000)
-
-    # Plot the posterior distribution of the parameters
-    pm.plot_posterior(trace, var_names=['alpha', 'beta'])
-
-
-    new_data = test[['rsi_shifted', 'change_shifted30', 'SMA_change7_shifted']].values
-    with logistic_model:
-        # inputs={'beta': beta, 'alpha': alpha, 'X': new_data}
-        # x.set_values
-        y_pred = pm.sample_posterior_predictive(trace, samples=1000, var_names=['y'], 
-                                                )
-        
-    # Plot the posterior predictive distribution of the response variable
-    plt.hist(y_pred['y'].mean(axis=0), bins=20)
-    plt.show()
-
-    print(y_pred["y"])
-
-    

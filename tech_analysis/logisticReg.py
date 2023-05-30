@@ -1,4 +1,4 @@
-from preprocessData import preprocessData
+from tech_analysis.preprocessData import preprocessData
 from confusion_matrix import my_confusion_matrix
 
 import pandas as pd

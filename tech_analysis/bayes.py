@@ -13,10 +13,10 @@ from pgmpy.metrics import correlation_score
 from pgmpy.metrics import log_likelihood_score
 import math
 
-from priceChange import priceChange
-from changeRSI import changeRSI
+from tech_analysis.priceChange import priceChange
+from tech_analysis.changeRSI import changeRSI
 from confusion_matrix import my_confusion_matrix
-from preprocessData import preprocessData
+from tech_analysis.preprocessData import preprocessData
 
 
 # ---counting occurences of specif combination---
