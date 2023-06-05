@@ -127,13 +127,37 @@ Naive Bayes text calssifier after consultation:
         Accuracy Positives:  0.5338983050847458
         Accuracy Negatives:  0.5308641975308642
     
-    external preprocessing, shuffle=False, alpha=0.1:
+    *external preprocessing, shuffle=False, alpha=0.1:
                         Actual up  Actual Down
         Predicted up          122          104
         Predicted down         80           92
         Performance:  0.5376884422110553
         Accuracy Positives:  0.5398230088495575
         Accuracy Negatives:  0.5348837209302325
+
+    ngram_range=(2,2):
+                            Actual up  Actual Down
+        Predicted up           25           20
+        Predicted down        177          176
+        Performance:  0.5050251256281407
+        Accuracy Positives:  0.5555555555555556
+        Accuracy Negatives:  0.4985835694050991
+
+    ngram_range=(1,2):
+                        Actual up  Actual Down
+        Predicted up           38           34
+        Predicted down        164          162
+        Performance:  0.5025125628140703
+        Accuracy Positives:  0.5277777777777778
+        Accuracy Negatives:  0.49693251533742333
+
+    ngram_range=(1,3):
+                            Actual up  Actual Down
+        Predicted up            3            2
+        Predicted down        199          194
+        Performance:  0.4949748743718593
+        Accuracy Positives:  0.6
+        Accuracy Negatives:  0.49363867684478374
 
     
 

@@ -48,7 +48,7 @@ oversampler = RandomOverSampler(random_state=42)
 undersampler = RandomUnderSampler(random_state=42)
 
 
-df = pd.DataFrame(data={"col" : ["Hello, this is a testing sentence.", "Hello, this is a second sentence.","Hello, this is a testing."], "Label":[1, 0, 1]})
+df = pd.DataFrame(data={"col" : ["Hello, this is a testing sentence.", "Hello, this is a second sentence.","Hi, okay testing", "Hello, this is a testing.", ], "Label":[1, 0, 1, 1]}) #"second"
 print(df)
 
 lemmatizer = WordNetLemmatizer()
@@ -114,8 +114,8 @@ word_counts = np.array(transform.sum(axis=0)).flatten()
 
 
 # Get indices of top 10 words with most occurrences
-# top_10_indices = np.argsort(word_counts)[::-1]
-top_10_indices = np.argsort(word_counts)[-100:][::-1]
+top_10_indices = np.argsort(word_counts)[::-1]
+# top_10_indices = np.argsort(word_counts)[-100:][::-1]
 # print(top_10_indices)
 
 
@@ -127,14 +127,21 @@ top_10_counts = [word_counts[index] for index in top_10_indices]
 
 n = 0
 one_words = []
+df_counts = pd.DataFrame(index=top_10_words, columns=["count"])
+
+
 for word, count in zip(top_10_words, top_10_counts):
     # print("Word:", word, "- Count:", count)
 
-    if (count == 1):
-        n += 1
-        one_words.append(word)
+    # if (count == 1):
+    #     n += 1
+    #     one_words.append(word)
 
-    
+    df_counts.loc[word] = count
+
+
+
+print(df_counts)
 # print(n)
 
 
@@ -181,8 +188,14 @@ def create_csv_from_array(array, filename):
 # print()
 print(cv.vocabulary_)
 
-model = MultinomialNB(alpha=0.1).fit(transform[:2], df.loc[:1, ["Label"]])
-print(model.predict(transform[2]))
+# print(transform[:3])
+# print(df.loc[:1, ["Label"]])
+
+print(transform[:])
+print(df.loc[:,["Label"]])
+
+model = MultinomialNB(alpha=0).fit(transform[:4], df.loc[:3, ["Label"]]) #alpha=0.1
+# print(model.predict_proba(transform[4]))
 # print(model)
 
 
@@ -193,8 +206,16 @@ feature_log_probs = model.feature_log_prob_
 # Convert feature log probabilities to probabilities
 feature_probs = np.exp(feature_log_probs)
 
+print(cv.vocabulary_)
+# print(model.feature_names_in_)
+print(feature_probs)
+
+sorted_vocabulary = sorted(cv.vocabulary_.items(), key=lambda x: x[1])
+
+vocab_arr = [item[0] for item in sorted_vocabulary]
+
 # Create a DataFrame to represent the probabilistic table
-prob_table = pd.DataFrame(feature_probs, columns=cv.vocabulary_)
+prob_table = pd.DataFrame(feature_probs, columns=vocab_arr)
 
 # Print the probabilities
 # print(X_train)
@@ -208,13 +229,19 @@ with open("output.txt", "w") as f:
     print(np.exp(model.feature_log_prob_),file=f)
     # print(model.feature_names_in_, file=f)
 
-    prob_table.iloc[[0, 1]] = prob_table.iloc[[1, 0]].values
+    # prob_table.iloc[[0, 1]] = prob_table.iloc[[1, 0]].values
     
-    print(prob_table, file=f) # sort by biggest impact on 0
+    prob_table = prob_table.transpose().sort_index()
+    prob_table["count"] = df_counts["count"]
 
 
+    print(df, file=f)
+    # print(prob_table, file=f) # sort by biggest impact on 0
 
-    print(prob_table.transpose().sort_values(0,  ascending=False), file=f) # sort by biggest impact on 0
+    print(prob_table.sort_values(0, ascending=False), file=f)
+
+
+    # print(prob_table.transpose().sort_values(0,  ascending=False), file=f) # sort by biggest impact on 0
     # print(prob_table.transpose().sort_values(1,  ascending=False), file=f) # sort by biggest impact on 0
 
     # print(model.predict_proba(transform[2]),file=f)
