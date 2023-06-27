@@ -159,8 +159,48 @@ Naive Bayes text calssifier after consultation:
         Accuracy Positives:  0.6
         Accuracy Negatives:  0.49363867684478374
 
-    
+    spData:
+                            Actual up  Actual Down
+        Predicted up          151          110
+        Predicted down         69           68
+        Performance:  0.550251256281407
+        Accuracy Positives:  0.578544061302682
+        Accuracy Negatives:  0.49635036496350365
 
+    spData + smote:
+                            Actual up  Actual Down
+        Predicted up          161          120
+        Predicted down         59           58
+        Performance:  0.550251256281407
+        Accuracy Positives:  0.5729537366548043
+        Accuracy Negatives:  0.49572649572649574
+    
+    sp500 data + random oversmapler:
+                            Actual up  Actual Down
+        Predicted up          200          152
+        Predicted down         20           26
+        Performance:  0.5678391959798995
+        Accuracy Positives:  0.5681818181818182
+        Accuracy Negatives:  0.5652173913043478
+
+    sp500 data + random undersampler:
+                            Actual up  Actual Down
+        Predicted up          112          101
+        Predicted down        108           77
+        Performance:  0.4748743718592965
+        Accuracy Positives:  0.5258215962441315
+        Accuracy Negatives:  0.41621621621621624
+
+
+    decision tree:
+                            Actual up  Actual Down
+        Predicted up          134          124
+        Predicted down         86           54
+        Performance:  0.4723618090452261
+        Accuracy Positives:  0.5193798449612403
+        Accuracy Negatives:  0.38571428571428573
+
+    
 
 
 
