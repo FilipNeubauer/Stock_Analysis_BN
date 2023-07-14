@@ -144,6 +144,8 @@ df_.dropna(inplace=True)
 df_["label"] = df_["label"].apply(lambda x: int(x))
 
 df_.drop("Date", axis=1, inplace=True)
+
+df_.to_csv("news_category_data.csv", index=False)
 # print(df_)
 
 

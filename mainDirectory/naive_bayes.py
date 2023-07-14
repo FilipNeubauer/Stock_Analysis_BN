@@ -11,6 +11,10 @@ import inflect
 from sklearn.model_selection import GridSearchCV
 from imblearn.under_sampling import RandomUnderSampler
 import numpy as np
+# import spacy
+
+# Load the English language model
+# nlp = spacy.load('en_core_web_sm')
 
 
 from prepareData2 import df_
@@ -30,8 +34,9 @@ porter_stemmer = PorterStemmer()
 lemmatizer = WordNetLemmatizer()
 
 
+# spacy_stop_words = spacy.lang.en.stop_words.STOP_WORDS
 my_stop_words = []       # stop words without punctuation
-for word in stopwords.words("english"):
+for word in stopwords.words("english"): # stopwords.words("english")
     my_word = ""
     for char in word:
         if char not in string.punctuation:
@@ -101,7 +106,8 @@ def get_word_counts():
     word_counts = {
         "word": feature_names,
         "count_0": word_counts_0.tolist()[0],
-        "count_1": word_counts_1.tolist()[0]
+        "count_1": word_counts_1.tolist()[0],
+        "count": word_counts_0.tolist()[0] + word_counts_1.tolist()[0] # total
     }
 
     # Create a DataFrame from the word counts dictionary
@@ -136,7 +142,11 @@ def get_word_counts():
 
     df_counts = df_counts.sort_index()
 
+    # word_counts_df["count"] = df_counts["count"]
 
+    # print(word_counts_df)
+
+    
 
     return word_counts_df, df_counts
 
@@ -158,6 +168,14 @@ def print_probabilities():
     prob_table = pd.DataFrame(feature_probs, columns=vocab_arr)
 
 
+    word_counts_df, df_counts = get_word_counts()
+
+
+    # print(word_counts_df)
+    # print(df_counts)
+
+
+
 
     with open("mainDirectory/output.txt", "w") as f:
         pd.set_option('display.max_rows', None)
@@ -174,6 +192,8 @@ def print_probabilities():
         prob_table["count_0"] = word_counts_df["count_0"]
         prob_table["count_1"] = word_counts_df["count_1"]
 
+        prob_table.to_csv("words_for_analysis.csv")
+
         prob_table["pomer"] =  prob_table.iloc[:,1] / prob_table.iloc[:, 0]
 
 
@@ -182,6 +202,8 @@ def print_probabilities():
 
 
         pd.reset_option('all')
+
+
     
 
 # load data
