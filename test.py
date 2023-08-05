@@ -17,6 +17,8 @@ import csv
 
 
 
+
+
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
 from sklearn.model_selection import train_test_split
 
@@ -194,62 +196,75 @@ print(cv.vocabulary_)
 print(transform[:])
 print(df.loc[:,["Label"]])
 
-model = MultinomialNB(alpha=0).fit(transform[:4], df.loc[:3, ["Label"]]) #alpha=0.1
+#model = MultinomialNB(alpha=0).fit(transform[:4], df.loc[:3, ["Label"]]) #alpha=0.1
 # print(model.predict_proba(transform[4]))
 # print(model)
 
 
 
 
-feature_log_probs = model.feature_log_prob_
+from sklearn.tree import DecisionTreeClassifier
+
+model = DecisionTreeClassifier(random_state=42).fit(transform[:4], df.loc[:3, ["Label"]])
+
+from sklearn import tree
+
+fig = plt.figure(figsize=(12,6))
+tree.plot_tree(model)
+plt.show()
+
+print(tree.export_text(model))
+
+
+# feature_log_probs = model.feature_log_prob_
 
 # Convert feature log probabilities to probabilities
-feature_probs = np.exp(feature_log_probs)
+# feature_probs = np.exp(feature_log_probs)
 
 print(cv.vocabulary_)
 # print(model.feature_names_in_)
-print(feature_probs)
+# print(feature_probs)
 
 sorted_vocabulary = sorted(cv.vocabulary_.items(), key=lambda x: x[1])
 
 vocab_arr = [item[0] for item in sorted_vocabulary]
 
 # Create a DataFrame to represent the probabilistic table
-prob_table = pd.DataFrame(feature_probs, columns=vocab_arr)
+# prob_table = pd.DataFrame(feature_probs, columns=vocab_arr)
 
 # Print the probabilities
 # print(X_train)
 
 
-with open("output.txt", "w") as f:
-    pd.set_option('display.max_rows', None)
-    pd.set_option('display.max_columns', None)
-    pd.set_option('display.width', None)
-    pd.set_option('display.max_colwidth', -1)
-    print(np.exp(model.feature_log_prob_),file=f)
-    # print(model.feature_names_in_, file=f)
+# with open("output.txt", "w") as f:
+#     pd.set_option('display.max_rows', None)
+#     pd.set_option('display.max_columns', None)
+#     pd.set_option('display.width', None)
+#     pd.set_option('display.max_colwidth', -1)
+#     # print(np.exp(model.feature_log_prob_),file=f)
+#     # print(model.feature_names_in_, file=f)
 
-    # prob_table.iloc[[0, 1]] = prob_table.iloc[[1, 0]].values
+#     # prob_table.iloc[[0, 1]] = prob_table.iloc[[1, 0]].values
     
-    prob_table = prob_table.transpose().sort_index()
-    prob_table["count"] = df_counts["count"]
+#     # prob_table = prob_table.transpose().sort_index()
+#     # prob_table["count"] = df_counts["count"]
 
 
-    print(df, file=f)
-    # print(prob_table, file=f) # sort by biggest impact on 0
+#     print(df, file=f)
+#     # print(prob_table, file=f) # sort by biggest impact on 0
 
-    print(prob_table.sort_values(0, ascending=False), file=f)
+#     # print(prob_table.sort_values(0, ascending=False), file=f)
 
 
-    # print(prob_table.transpose().sort_values(0,  ascending=False), file=f) # sort by biggest impact on 0
-    # print(prob_table.transpose().sort_values(1,  ascending=False), file=f) # sort by biggest impact on 0
+#     # print(prob_table.transpose().sort_values(0,  ascending=False), file=f) # sort by biggest impact on 0
+#     # print(prob_table.transpose().sort_values(1,  ascending=False), file=f) # sort by biggest impact on 0
 
-    # print(model.predict_proba(transform[2]),file=f)
-    # print(transform.toarray(), file=f)
+#     # print(model.predict_proba(transform[2]),file=f)
+#     # print(transform.toarray(), file=f)
 
     
 
-    pd.reset_option('all')
+#     pd.reset_option('all')
 
 
 

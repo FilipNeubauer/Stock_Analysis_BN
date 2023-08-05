@@ -101,13 +101,25 @@ sp500["Price"] = sp500["Price"].apply(lambda x: float(x.replace(",", "")))
 sp500["Price"] = sp500["Price"].astype(float)
 
 
-sp500 = priceChange(sp500, "Price", N, name="label")
-sp500["label"] = pd.cut(x=sp500["label"], bins=[-1, 0, 1], labels=[0, 1]) # maybe issue if the cahnge is higher/lower than 100 %
+def percentage_to_float(percentage_str):
+    multiplier = -1 if percentage_str.startswith('-') else 1
+    return multiplier * float(percentage_str.strip('-%')) / 100
+
+sp500["floatChange"] = sp500["Change %"].apply(percentage_to_float)
+sp500["label"] = pd.cut(x=sp500["floatChange"], bins=[-float('inf'), 0, float('inf')], labels=[0, 1])
+print(sp500)
+
+
+
+#sp500 = priceChange(sp500, "Price", N, name="label")
+#sp500["label"] = pd.cut(x=sp500["label"], bins=[-1, 0, 1], labels=[0, 1]) # maybe issue if the cahnge is higher/lower than 100 %
 
 # print(sp500.head(10)) 
 
 
 sp500["label"] = sp500["label"].shift(-(N-1))
+
+
 
 
 sp500 = sp500.dropna(subset=["label"])
@@ -117,7 +129,7 @@ sp500.reset_index(inplace=True, drop=True)
 
 
 
-# print(sp500)
+print(sp500)
 
 
 
@@ -131,12 +143,14 @@ for i in range(len(sp500)):
 
 df_["label"] = np.nan
 
+
 for i in range(len(df_)):
 
     date = df_.iloc[i]["Date"]
 
     if date in my_dict:
         df_.at[i, "label"] = my_dict[date]
+
     
 
 df_.dropna(inplace=True)
