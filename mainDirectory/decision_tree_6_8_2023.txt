@@ -1,0 +1,641 @@
+Validation: 0.5591247672253259
+min_df: 24
+min_samples_leaf: 7
+max_depth: 13
+[0.5025226278636699, 193, 133, 65, 46]
+
+Validation: 0.5599800788185874
+min_df: 25
+min_samples_leaf: 6
+max_depth: 13
+[0.4977913472781603, 192, 134, 66, 45]
+
+Validation: 0.529372915854662
+min_df: 26
+min_samples_leaf: 4
+max_depth: 14
+[0.5038326620761335, 198, 136, 60, 43]
+
+Validation: 0.5341041964401715
+min_df: 27
+min_samples_leaf: 4
+max_depth: 14
+[0.506625958165519, 198, 135, 60, 44]
+
+Validation: 0.5265796197652766
+min_df: 28
+min_samples_leaf: 7
+max_depth: 13
+[0.5063985968559179, 195, 133, 63, 46]
+
+Validation: 0.5276622926681391
+min_df: 29
+min_samples_leaf: 4
+max_depth: 12
+[0.5143778961500152, 202, 135, 56, 44]
+
+Validation: 0.5265796197652766
+min_df: 30
+min_samples_leaf: 4
+max_depth: 12
+[0.5160885193365381, 200, 133, 58, 46]
+
+Validation: 0.5268069810748777
+min_df: 31
+min_samples_leaf: 6
+max_depth: 12
+[0.5115846000606297, 202, 136, 56, 43]
+
+Validation: 0.5257243081720151
+min_df: 32
+min_samples_leaf: 4
+max_depth: 12
+[0.5171711922394007, 202, 134, 56, 45]
+
+Validation: 0.5285176042614006
+min_df: 33
+min_samples_leaf: 4
+max_depth: 12
+[0.5126672729634922, 204, 137, 54, 42]
+
+Validation: 0.5276622926681391
+min_df: 34
+min_samples_leaf: 7
+max_depth: 12
+[0.5096466155645056, 201, 136, 57, 43]
+
+Validation: 0.5347862803689749
+min_df: 35
+min_samples_leaf: 2
+max_depth: 14
+[0.4945433285695725, 186, 131, 72, 48]
+
+Validation: 0.5319929842795894
+min_df: 36
+min_samples_leaf: 6
+max_depth: 14
+[0.5072539084491794, 194, 132, 64, 47]
+
+Validation: 0.5321662119440475
+min_df: 37
+min_samples_leaf: 4
+max_depth: 10
+[0.5078818587328396, 190, 129, 68, 50]
+
+Validation: 0.537070720194015
+min_df: 38
+min_samples_leaf: 7
+max_depth: 12
+[0.4869646182495344, 172, 124, 86, 55]
+
+Validation: 0.538662249361223
+min_df: 39
+min_samples_leaf: 6
+max_depth: 14
+[0.5242410462950933, 197, 128, 61, 51]
+
+Validation: 0.537070720194015
+min_df: 40
+min_samples_leaf: 7
+max_depth: 12
+[0.48417132216014896, 172, 125, 86, 54]
+
+Validation: 0.5392901996448833
+min_df: 41
+min_samples_leaf: 1
+max_depth: 14
+[0.510675154822225, 190, 128, 68, 51]
+
+Validation: 0.5375795764583604
+min_df: 42
+min_samples_leaf: 4
+max_depth: 14
+[0.5109025161318262, 193, 130, 65, 49]
+
+Validation: 0.542538218353471
+min_df: 43
+min_samples_leaf: 3
+max_depth: 14
+[0.5111298774414275, 196, 132, 62, 47]
+
+Validation: 0.5485253995063012
+min_df: 44
+min_samples_leaf: 4
+max_depth: 14
+[0.535186869343034, 194, 122, 64, 57]
+
+Validation: 0.5513186955956866
+min_df: 45
+min_samples_leaf: 4
+max_depth: 14
+[0.535186869343034, 194, 122, 64, 57]
+
+Validation: 0.5461326923909748
+min_df: 46
+min_samples_leaf: 4
+max_depth: 10
+[0.500985232341605, 185, 128, 73, 51]
+
+Validation: 0.5509181066216274
+min_df: 47
+min_samples_leaf: 2
+max_depth: 13
+[0.5014399549608073, 191, 132, 67, 47]
+
+Validation: 0.5487527608159023
+min_df: 48
+min_samples_leaf: 1
+max_depth: 14
+[0.5020679052444675, 187, 129, 71, 50]
+
+Validation: 0.5549673032783335
+min_df: 49
+min_samples_leaf: 4
+max_depth: 12
+[0.485936078991815, 183, 132, 75, 47]
+
+Validation: 0.5524013684985493
+min_df: 50
+min_samples_leaf: 6
+max_depth: 13
+[0.4941427395955134, 193, 136, 65, 43]
+
+Validation: 0.5620912909791693
+min_df: 51
+min_samples_leaf: 2
+max_depth: 14
+[0.4947706898791737, 189, 133, 69, 46]
+
+Validation: 0.5554220258975358
+min_df: 52
+min_samples_leaf: 1
+max_depth: 13
+[0.49608072409163745, 194, 136, 64, 43]
+
+Validation: 0.5640292754752934
+min_df: 53
+min_samples_leaf: 1
+max_depth: 14
+[0.49089472088692565, 187, 133, 71, 46]
+
+Validation: 0.5532566800918106
+min_df: 54
+min_samples_leaf: 2
+max_depth: 12
+[0.512385778008748, 188, 126, 70, 53]
+
+Validation: 0.5504633840024252
+min_df: 55
+min_samples_leaf: 3
+max_depth: 13
+[0.49972933177428436, 193, 134, 65, 45]
+
+Validation: 0.552174007188948
+min_df: 56
+min_samples_leaf: 2
+max_depth: 11
+[0.514323762504872, 189, 126, 69, 53]
+
+Validation: 0.5549673032783335
+min_df: 57
+min_samples_leaf: 1
+max_depth: 13
+[0.5033779394569313, 192, 132, 66, 47]
+
+Validation: 0.5493807110995625
+min_df: 58
+min_samples_leaf: 6
+max_depth: 12
+[0.4958533627820363, 191, 134, 67, 45]
+
+Validation: 0.5635745528560911
+min_df: 59
+min_samples_leaf: 2
+max_depth: 12
+[0.5113031051058854, 186, 125, 72, 54]
+
+Validation: 0.5534840414014117
+min_df: 60
+min_samples_leaf: 7
+max_depth: 13
+[0.5360421809362955, 193, 121, 65, 58]
+
+Validation: 0.5569052877744576
+min_df: 61
+min_samples_leaf: 8
+max_depth: 13
+[0.5252695855528128, 186, 120, 72, 59]
+
+Validation: 0.5571326490840587
+min_df: 62
+min_samples_leaf: 8
+max_depth: 13
+[0.5300008661383222, 187, 119, 71, 60]
+
+Validation: 0.5575332380581179
+min_df: 63
+min_samples_leaf: 8
+max_depth: 12
+[0.5372980815036161, 185, 115, 73, 64]
+
+Validation: 0.5498354337187649
+min_df: 64
+min_samples_leaf: 7
+max_depth: 13
+[0.5134684509116105, 190, 127, 68, 52]
+
+Validation: 0.5571326490840587
+min_df: 65
+min_samples_leaf: 7
+max_depth: 13
+[0.5276622926681391, 193, 124, 65, 55]
+
+Validation: 0.5571326490840587
+min_df: 66
+min_samples_leaf: 7
+max_depth: 13
+[0.5304555887575246, 193, 123, 65, 56]
+
+Validation: 0.5545125806591312
+min_df: 67
+min_samples_leaf: 7
+max_depth: 11
+[0.529372915854662, 191, 122, 67, 57]
+
+Validation: 0.5678511108223984
+min_df: 68
+min_samples_leaf: 7
+max_depth: 14
+[0.5104477935126239, 187, 126, 71, 53]
+
+Validation: 0.5635745528560911
+min_df: 69
+min_samples_leaf: 1
+max_depth: 14
+[0.4900394092936642, 188, 134, 70, 45]
+
+Validation: 0.5674505218483392
+min_df: 70
+min_samples_leaf: 5
+max_depth: 14
+[0.4984192975618206, 188, 131, 70, 48]
+
+Validation: 0.5618639296695682
+min_df: 71
+min_samples_leaf: 7
+max_depth: 13
+[0.5109025161318262, 193, 130, 65, 49]
+
+Validation: 0.5612359793859079
+min_df: 72
+min_samples_leaf: 4
+max_depth: 13
+[0.5022952665540686, 190, 131, 68, 48]
+
+Validation: 0.5493807110995625
+min_df: 73
+min_samples_leaf: 9
+max_depth: 9
+[0.5190550430903815, 190, 125, 68, 54]
+
+Validation: 0.5549673032783335
+min_df: 74
+min_samples_leaf: 9
+max_depth: 9
+[0.521848339179767, 190, 124, 68, 55]
+
+Validation: 0.5424840847083279
+min_df: 75
+min_samples_leaf: 9
+max_depth: 12
+[0.5259516694816162, 195, 126, 63, 53]
+
+Validation: 0.5375795764583604
+min_df: 76
+min_samples_leaf: 8
+max_depth: 6
+[0.5184270928067212, 194, 128, 64, 51]
+
+Validation: 0.535013641678576
+min_df: 77
+min_samples_leaf: 8
+max_depth: 7
+[0.523613096011433, 201, 131, 57, 48]
+
+Validation: 0.5345589190593738
+min_df: 78
+min_samples_leaf: 8
+max_depth: 6
+[0.5203650773028452, 195, 128, 63, 51]
+
+Validation: 0.5358689532718375
+min_df: 79
+min_samples_leaf: 9
+max_depth: 7
+[0.5152332077432766, 201, 134, 57, 45]
+
+Validation: 0.5422567233987268
+min_df: 80
+min_samples_leaf: 9
+max_depth: 5
+[0.5054891516175133, 183, 125, 75, 54]
+
+Validation: 0.5358689532718375
+min_df: 81
+min_samples_leaf: 9
+max_depth: 7
+[0.5152332077432766, 201, 134, 57, 45]
+
+Validation: 0.5345589190593738
+min_df: 82
+min_samples_leaf: 8
+max_depth: 6
+[0.5203650773028452, 195, 128, 63, 51]
+
+Validation: 0.5347862803689749
+min_df: 83
+min_samples_leaf: 8
+max_depth: 8
+[0.5130678619375515, 197, 132, 61, 47]
+
+Validation: 0.5384348880516219
+min_df: 84
+min_samples_leaf: 8
+max_depth: 6
+[0.5231583733922307, 195, 127, 63, 52]
+
+Validation: 0.538662249361223
+min_df: 85
+min_samples_leaf: 8
+max_depth: 8
+[0.5158611580269369, 197, 131, 61, 48]
+
+Validation: 0.535013641678576
+min_df: 86
+min_samples_leaf: 8
+max_depth: 7
+[0.523613096011433, 201, 131, 57, 48]
+
+Validation: 0.5347862803689749
+min_df: 87
+min_samples_leaf: 8
+max_depth: 8
+[0.5130678619375515, 197, 132, 61, 47]
+
+Validation: 0.5338768351305703
+min_df: 88
+min_samples_leaf: 4
+max_depth: 4
+[0.5016131826252652, 181, 125, 77, 54]
+
+Validation: 0.5358148196266943
+min_df: 89
+min_samples_leaf: 6
+max_depth: 5
+[0.5054891516175133, 183, 125, 75, 54]
+
+Validation: 0.5397449222640855
+min_df: 90
+min_samples_leaf: 8
+max_depth: 7
+[0.523613096011433, 201, 131, 57, 48]
+
+Validation: 0.5403187389026027
+min_df: 91
+min_samples_leaf: 8
+max_depth: 5
+[0.5082824477068988, 183, 124, 75, 55]
+
+Validation: 0.5441947078948508
+min_df: 92
+min_samples_leaf: 8
+max_depth: 5
+[0.5110757437962843, 183, 123, 75, 56]
+
+Validation: 0.5358689532718375
+min_df: 93
+min_samples_leaf: 8
+max_depth: 7
+[0.5208197999220476, 201, 132, 57, 47]
+
+Validation: 0.5403187389026027
+min_df: 94
+min_samples_leaf: 8
+max_depth: 5
+[0.5082824477068988, 183, 124, 75, 55]
+
+Validation: 0.5358148196266943
+min_df: 95
+min_samples_leaf: 6
+max_depth: 5
+[0.5054891516175133, 183, 125, 75, 54]
+
+Validation: 0.5339309687757134
+min_df: 96
+min_samples_leaf: 6
+max_depth: 13
+[0.4995019704646832, 190, 132, 68, 47]
+
+Validation: 0.5358148196266943
+min_df: 97
+min_samples_leaf: 6
+max_depth: 5
+[0.5054891516175133, 183, 125, 75, 54]
+
+Validation: 0.5390628383352821
+min_df: 98
+min_samples_leaf: 1
+max_depth: 14
+[0.48143215971590664, 185, 135, 73, 44]
+
+Validation: 0.5358148196266943
+min_df: 99
+min_samples_leaf: 6
+max_depth: 5
+[0.5054891516175133, 183, 125, 75, 54]
+
+Validation: 0.5343856913949158
+min_df: 100
+min_samples_leaf: 3
+max_depth: 9
+[0.5154605690528777, 204, 136, 54, 43]
+
+Validation: 0.5375795764583604
+min_df: 101
+min_samples_leaf: 8
+max_depth: 6
+[0.5184270928067212, 194, 128, 64, 51]
+
+Validation: 0.535186869343034
+min_df: 102
+min_samples_leaf: 3
+max_depth: 14
+[0.49648131306569654, 187, 131, 71, 48]
+
+Validation: 0.5338768351305703
+min_df: 103
+min_samples_leaf: 4
+max_depth: 4
+[0.5016131826252652, 181, 125, 77, 54]
+
+Validation: 0.5337036074661123
+min_df: 104
+min_samples_leaf: 1
+max_depth: 14
+[0.4915768048157291, 196, 139, 62, 40]
+
+Validation: 0.5384348880516219
+min_df: 105
+min_samples_leaf: 8
+max_depth: 6
+[0.5231583733922307, 195, 127, 63, 52]
+
+Validation: 0.5358689532718375
+min_df: 106
+min_samples_leaf: 9
+max_depth: 7
+[0.5152332077432766, 201, 134, 57, 45]
+
+Validation: 0.5378069377679615
+min_df: 107
+min_samples_leaf: 9
+max_depth: 7
+[0.5180265038326621, 201, 133, 57, 46]
+
+Validation: 0.5345589190593738
+min_df: 108
+min_samples_leaf: 1
+max_depth: 11
+[0.516261747000996, 190, 126, 68, 53]
+
+Validation: 0.5338768351305703
+min_df: 109
+min_samples_leaf: 4
+max_depth: 4
+[0.49881988653587983, 181, 126, 77, 53]
+
+Validation: 0.5422567233987268
+min_df: 110
+min_samples_leaf: 9
+max_depth: 5
+[0.5054891516175133, 183, 125, 75, 54]
+
+Validation: 0.5373522151487593
+min_df: 111
+min_samples_leaf: 1
+max_depth: 14
+[0.48422545580529214, 185, 134, 73, 45]
+
+Validation: 0.5338768351305703
+min_df: 112
+min_samples_leaf: 4
+max_depth: 4
+[0.5016131826252652, 181, 125, 77, 54]
+
+Validation: 0.5358148196266943
+min_df: 113
+min_samples_leaf: 6
+max_depth: 5
+[0.5054891516175133, 183, 125, 75, 54]
+
+Validation: 0.5422567233987268
+min_df: 114
+min_samples_leaf: 9
+max_depth: 5
+[0.5054891516175133, 183, 125, 75, 54]
+
+Validation: 0.5422567233987268
+min_df: 115
+min_samples_leaf: 9
+max_depth: 5
+[0.5054891516175133, 183, 125, 75, 54]
+
+Validation: 0.5422567233987268
+min_df: 116
+min_samples_leaf: 9
+max_depth: 5
+[0.5054891516175133, 183, 125, 75, 54]
+
+Validation: 0.5441947078948508
+min_df: 117
+min_samples_leaf: 8
+max_depth: 5
+[0.5110757437962843, 183, 123, 75, 56]
+
+Validation: 0.535013641678576
+min_df: 118
+min_samples_leaf: 8
+max_depth: 7
+[0.523613096011433, 201, 131, 57, 48]
+
+Validation: 0.5364969035554978
+min_df: 119
+min_samples_leaf: 9
+max_depth: 6
+[0.5175717812134598, 195, 129, 63, 50]
+
+Validation: 0.5343315577497727
+min_df: 120
+min_samples_leaf: 7
+max_depth: 14
+[0.49904724784548093, 184, 128, 74, 51]
+
+Validation: 0.5371248538391581
+min_df: 121
+min_samples_leaf: 7
+max_depth: 14
+[0.4971092633493569, 183, 128, 75, 51]
+
+Validation: 0.5422567233987268
+min_df: 122
+min_samples_leaf: 9
+max_depth: 5
+[0.5054891516175133, 183, 125, 75, 54]
+
+Validation: 0.535186869343034
+min_df: 123
+min_samples_leaf: 7
+max_depth: 14
+[0.49904724784548093, 184, 128, 74, 51]
+
+Validation: 0.535186869343034
+min_df: 124
+min_samples_leaf: 7
+max_depth: 14
+[0.49904724784548093, 184, 128, 74, 51]
+
+Validation: 0.5338768351305703
+min_df: 125
+min_samples_leaf: 4
+max_depth: 4
+[0.49881988653587983, 181, 126, 77, 53]
+
+Validation: 0.5343315577497727
+min_df: 126
+min_samples_leaf: 7
+max_depth: 14
+[0.4999025594387424, 183, 127, 75, 52]
+
+Validation: 0.534959508033433
+min_df: 127
+min_samples_leaf: 1
+max_depth: 5
+[0.5026958555281279, 183, 126, 75, 53]
+
+Validation: 0.5356415919622364
+min_df: 128
+min_samples_leaf: 9
+max_depth: 6
+[0.5128405006279503, 194, 130, 64, 49]
+
+Validation: 0.5441947078948508
+min_df: 129
+min_samples_leaf: 8
+max_depth: 5
+[0.5110757437962843, 183, 123, 75, 56]
+
+Validation: 0.5343315577497727
+min_df: 130
+min_samples_leaf: 7
+max_depth: 14
+[0.4999025594387424, 183, 127, 75, 52]
