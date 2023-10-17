@@ -1,0 +1,12 @@
+training time: 1.5729138851165771
+
+None
+
+{'estimator__max_depth': 1, 'estimator__min_samples_leaf': 1, 'tokenizer__min_df': 2}
+
++-----------------+--------------------+--------------------+
+|                 | Predicted Negative | Predicted Positive |
++-----------------+--------------------+--------------------+
+| Actual Negative |         0          |         2          |
+| Actual Positive |         0          |         0          |
++-----------------+--------------------+--------------------+
