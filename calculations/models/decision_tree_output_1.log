@@ -1,0 +1,15 @@
+nohup: ignoring input
+training time: 30491.708800792694
+
+[0.5389133627019089, 169, 114, 58, 57]
+
+{'estimator__max_depth': 10, 'estimator__min_samples_leaf': 13, 'tokenizer__min_df': 136, 'tokenizer__ngram_range': (1, 1)}
+
++-----------------+--------------------+--------------------+
+|                 | Predicted Negative | Predicted Positive |
++-----------------+--------------------+--------------------+
+| Actual Negative |         57         |         58         |
+| Actual Positive |        114         |        169         |
++-----------------+--------------------+--------------------+
+
+words: 526

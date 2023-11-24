@@ -1,1 +1,1 @@
-training time: 12.266905069351196
+training time: 12.264845848083496

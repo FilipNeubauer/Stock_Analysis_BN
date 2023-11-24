@@ -1,3 +1,8 @@
+def warn(*args, **kwargs):
+    pass
+import warnings
+warnings.warn = warn
+
 # importing libraries
 import pandas as pd
 import string
@@ -14,12 +19,19 @@ import time
 import joblib
 from prettytable import PrettyTable
 from sklearn.metrics import confusion_matrix
-import warnings
+from nltk import word_tokenize 
 
-warnings.filterwarnings("ignore", category=FutureWarning)
-warnings.filterwarnings("ignore", category=UserWarning)
+# warnings.filterwarnings("ignore")
 
-# functions
+# warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
+# warnings.filterwarnings("ignore", category=FutureWarning, module="sklearn")
+
+class LemmaTokenizer(object):
+    def __init__(self):
+        self.wnl = WordNetLemmatizer()
+    def __call__(self, articles):
+        return [self.wnl.lemmatize(t) for t in word_tokenize(articles)]
+
 
 # modified stop words so that they are without punctuation
 def create_my_stop_words():
@@ -67,7 +79,7 @@ def text_cleanning(row):
     global test
     remove_b = row.replace("b\"", "").replace("b'", "")   # removing b" and b'
     remove_punc = "".join([char for char in remove_b if char not in string.punctuation])     # removing punctuation !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
-    remove_stop_words = [word for word in remove_punc.split() if word.lower() not in my_stop_words]  # removing stopwords
+    #remove_stop_words = [word for word in remove_punc.split() if word.lower() not in my_stop_words]  # removing stopwords
     
 
 
@@ -77,13 +89,14 @@ def text_cleanning(row):
         print(i, " : ", porter_stemmer.stem(i, to_lowercase=False), " : ", lemmatizer.lemmatize(i), " : ", singularize_word(i))
     """
     
-    lem_words = [lemmatizer.lemmatize(word) for word in remove_stop_words] # base of the words
+    #lem_words = [lemmatizer.lemmatize(word) for word in remove_stop_words] # base of the words
 
     # singular_words = [singularize_word(word) for word in lem_words]         # plural -> singular
     #if "me" in singular_words or "Me" in singular_words:
      #   test += 1
 
-    return " ".join(lem_words)  # returning cleaned row as a string
+    #return " ".join(lem_words)  # returning cleaned row as a string
+    return remove_punc
 
 
 # get each word in Count Vectorizer with its count in 0, 1 and total
@@ -205,19 +218,18 @@ my_stop_words = create_my_stop_words()
 
 # load kaggle data
 df = pd.read_csv("Combined_News_DJIA.csv")
-df = df.head(100)
 df = prepare_kaggle_dataset(df)
 
 
 df["combined"] = df['combined'].apply(text_cleanning)
 
 
-X_train, X_test, y_train, y_test = train_test_split(df["combined"], df["label"], test_size=0.2,shuffle=True, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(df["combined"], df["label"], test_size=0.1,shuffle=True, random_state=42)
 
-tokenizer = CountVectorizer(analyzer="word", lowercase=False)
+tokenizer = CountVectorizer(tokenizer=LemmaTokenizer, analyzer="word", lowercase=True, stop_words="english")
 
 
-estimator = MultinomialNB()
+estimator = MultinomialNB(alpha=0.1)
 
 pipeline = Pipeline([
     ("tokenizer", tokenizer),
@@ -226,8 +238,7 @@ pipeline = Pipeline([
 
 param_grid = {
     "tokenizer__ngram_range": [(1, 1), (1, 2), (2, 2)],
-    "tokenizer__min_df": [i for i in range(1, 200, 5)],
-    "estimator__alpha": [i * 0.1 for i in range(10)],
+    "tokenizer__min_df": [i for i in range(1, 151, 5)],
 }
 
 grid_search = GridSearchCV(pipeline, param_grid, cv=5, n_jobs=-1, scoring="balanced_accuracy")
@@ -249,17 +260,17 @@ conf = pd.DataFrame({"Predicted": predict, "Actual":y_test})
 
 
 
-with open("bayes_output.txt", "w") as file:
-    file.write("training time: " + str(fitting_time))
-    file.write("")
-    file.write(my_confusion_matrix(conf, "Predicted", "Actual", up=1, down=0))
-    file.write("")
-    file.write(grid_search.best_params_)
-    file.write("")
-    file.write(print_confusion_matrix(predict, y_test))
+print("training time: " + str(fitting_time))
+print("")
+print(my_confusion_matrix(conf, "Predicted", "Actual", up=1, down=0))
+print("")
+print(grid_search.best_params_)
+print("")
+print(print_confusion_matrix(predict, y_test))
+print("")
+print("words:", len(best_model.named_steps["tokenizer"].get_feature_names_out()))
 
-print()
     
 
 
-joblib.dump(grid_search, "bayes_model.pkl")
+joblib.dump(grid_search, "bayes_model_3.pkl")
